@@ -187,6 +187,11 @@ var bufferPool = &sync.Pool{
 func newSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 	targetQuery := target.RawQuery
 	director := func(req *http.Request) {
+		requestDump, err := httputil.DumpRequest(req, true)
+		if err != nil{
+			fmt.Println(err)
+		}
+		fmt.Println(string(requestDump))
 		req.URL.Scheme = target.Scheme
 		req.URL.Host = target.Host
 		req.URL.Path = singleJoiningSlash(target.Path, req.URL.Path)
