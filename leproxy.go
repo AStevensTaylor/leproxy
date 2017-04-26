@@ -191,7 +191,7 @@ func newSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 		if err != nil{
 			fmt.Println(err)
 		}
-		fmt.Printf("============== REQUEST =============\n%s\n============== END REQUEST =============", string(requestDump))
+		fmt.Printf("\n============== REQUEST =============\n%s\n============== END REQUEST =============\n", string(requestDump))
 		req.URL.Scheme = target.Scheme
 		req.URL.Host = target.Host
 		req.URL.Path = singleJoiningSlash(target.Path, req.URL.Path)
